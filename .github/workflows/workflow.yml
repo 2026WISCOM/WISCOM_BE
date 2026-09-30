@@ -40,8 +40,8 @@ jobs:
       - name: Docker build & push to docker repo
         run: |
           echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-          docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/feetfit .
-          docker push ${{ secrets.DOCKER_REPO }}/feetfit
+          docker build -f Dockerfile -t ${{ secrets.DOCKER_REPO }}/2026wiscom .
+          docker push ${{ secrets.DOCKER_REPO }}/2026wiscom
 
         # 서버에 접속하여 pull 한 후 docker compose로 컨테이너 재생성
       - name: Deploy to server
@@ -71,6 +71,6 @@ jobs:
 
             sudo docker rm -f $(sudo docker ps -qa) || true
             compose down || true
-            sudo docker pull ${{ secrets.DOCKER_REPO }}/feetfit
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/2026wiscom
             compose up -d
             sudo docker image prune -f
