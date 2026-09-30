@@ -16,18 +16,20 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # jdk 17 버전 환경을 세팅
-      - name: Set up JDK 17
+      # 프로젝트 toolchain과 동일한 JDK 사용
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '17'
-          distribution: "adopt"
+          java-version: '21'
+          distribution: "temurin"
 
       # 깃에 없는 application.yml 파일 생성
       - name: Make application.yml
+        env:
+          APPLICATION_YML: ${{ secrets.YML }}
         run: |
-          cd ./src/main/resources
-          echo "${{ secrets.YML }}" > ./application.yml
+          mkdir -p src/main/resources
+          printf '%s\n' "$APPLICATION_YML" > src/main/resources/application.yml
         shell: bash
 
       # 소스 빌드
