@@ -128,6 +128,14 @@ class GuestbookApiTests {
     }
 
     @Test
+    void swaggerUsesSameOriginInsteadOfInternalHttpAddress() throws Exception {
+        mockMvc.perform(get("/v3/api-docs").header("Host", "43.203.1.249:8080"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.servers", hasSize(1)))
+                .andExpect(jsonPath("$.servers[0].url").value("/"));
+    }
+
+    @Test
     void databaseRejectsNullTeamId() {
         assertThatThrownBy(() -> jdbc.update(
                 "insert into guestbook (team_id, writer, content, created_at, updated_at) "
