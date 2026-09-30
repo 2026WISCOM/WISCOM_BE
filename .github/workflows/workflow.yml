@@ -57,17 +57,13 @@ jobs:
           script: |
             set -e
 
-            if ! sudo docker compose version >/dev/null 2>&1; then
-              sudo apt-get update
-              sudo apt-get install -y docker-compose-plugin || true
-            fi
-
             if sudo docker compose version >/dev/null 2>&1; then
               compose() { sudo docker compose "$@"; }
-            elif command -v docker-compose >/dev/null 2>&1; then
+            elif sudo docker-compose version >/dev/null 2>&1; then
               compose() { sudo docker-compose "$@"; }
             else
-              echo "docker compose 또는 docker-compose가 설치되어 있어야 합니다."
+              echo "Docker Compose를 서버에 먼저 설치해야 합니다. 기존 컨테이너는 변경하지 않습니다."
+              echo "설치 안내: https://docs.docker.com/compose/install/linux/"
               exit 1
             fi
 
