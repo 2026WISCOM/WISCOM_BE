@@ -11,7 +11,7 @@ import wiscom.backend.apiPayload.code.ErrorReasonDTO;
 public enum ErrorStatus implements BaseErrorCode {
     _BAD_REQUEST(HttpStatus.BAD_REQUEST, "COMMON400", "잘못된 요청입니다."),
     _INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON500", "서버 에러, 관리자에게 문의 바랍니다."),
-    INVALID_TEAM_ID(HttpStatus.BAD_REQUEST, "GUESTBOOK4001", "teamId는 등록된 12개 팀명 중 하나와 정확히 일치해야 합니다.");
+    INVALID_TEAM_ID(HttpStatus.BAD_REQUEST, "GUESTBOOK4001", "teamId는 등록된 팀명 또는 '모두에게'와 정확히 일치해야 합니다.");
 
     private final HttpStatus httpStatus;
     private final String code;

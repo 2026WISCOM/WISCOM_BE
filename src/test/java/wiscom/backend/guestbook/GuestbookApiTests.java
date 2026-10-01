@@ -38,7 +38,7 @@ class GuestbookApiTests {
 
     @ParameterizedTest
     @ValueSource(strings = {"데드락", "Quadcore", "2233", "아자쓰!", "공일공일", "PolyStack",
-            "exit(0)", "MOOD:E", "404", "BE1", "Axis", "가디언즈"})
+            "exit(0)", "MOOD:E", "404", "BE1", "Axis", "가디언즈", "모두에게"})
     void acceptsExactTeamNamesInJsonAndDatabase(String teamName) throws Exception {
         mockMvc.perform(post("/api/guestbooks")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -66,7 +66,8 @@ class GuestbookApiTests {
     @ParameterizedTest
     @ValueSource(strings = {"없는팀", "quadcore", "MOOD_E", "exit0", "아자쓰", "GUARDIANS",
             "DEADLOCK", "TEAM_2233", "TEAM_404", "QUADCORE", "POLYSTACK", "AXIS", "EXIT_0",
-            "AJASS", "ZERO_ONE_ZERO_ONE", "", " 가디언즈", "가디언즈 ", "Mood:E", "2233 "})
+            "AJASS", "ZERO_ONE_ZERO_ONE", "", " 가디언즈", "가디언즈 ", "Mood:E", "2233 ",
+            "EVERYONE", "모두에게 ", " 모두에게"})
     void rejectsInvalidNamesWithoutSaving(String teamName) throws Exception {
         long count = repository.count();
         mockMvc.perform(post("/api/guestbooks")
