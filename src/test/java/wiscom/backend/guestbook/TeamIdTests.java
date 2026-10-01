@@ -10,10 +10,10 @@ import static org.assertj.core.api.Assertions.*;
 
 class TeamIdTests {
     @Test
-    void allowedTeamNamesAreExactlyTheRequestedTwelve() {
+    void allowedValuesIncludeTwelveTeamsAndEveryone() {
         assertThat(TeamId.values()).extracting(TeamId::getValue).containsExactly(
                 "데드락", "Quadcore", "2233", "아자쓰!", "공일공일", "PolyStack",
-                "exit(0)", "MOOD:E", "404", "BE1", "Axis", "가디언즈");
+                "exit(0)", "MOOD:E", "404", "BE1", "Axis", "가디언즈", "모두에게");
     }
 
     @Test

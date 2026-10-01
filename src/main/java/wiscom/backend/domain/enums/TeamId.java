@@ -17,7 +17,8 @@ public enum TeamId {
     TEAM_404("404"),
     BE1("BE1"),
     AXIS("Axis"),
-    GUARDIANS("가디언즈");
+    GUARDIANS("가디언즈"),
+    EVERYONE("모두에게");
 
     private final String value;
 
